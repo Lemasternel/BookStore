@@ -1,0 +1,45 @@
+﻿@using BookStore.WebAPI.Resources
+@{
+    ViewBag.Title = "View";
+    Layout = null;
+}
+
+<h2>@Labels.Books</h2>
+
+<p>
+    <a id="createNew" href="javascript:void(0)" onclick="bookForm.functions.clearForm()">@Labels.CreateNew</a>
+</p>
+<table id="bookTable" class="table">
+    <tr>
+        <th>
+            @Labels.Title
+        </th>
+        <th>
+            @Labels.Description
+        </th>
+        <th>
+            @Labels.Price
+        </th>
+        <th>
+            @Labels.Quantity
+        </th>
+        <th>
+            @Labels.Actions
+        </th>
+    </tr>
+
+        <tr id="sketch" class="hidden">
+            <td id="title">
+            </td>
+            <td id="description">
+            </td>
+            <td id="price">
+            </td>
+            <td id="quantity">
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning" data-id="0" onclick="edit(this)">@Labels.Edit</button>
+                <button type="button" class="btn btn-danger" data-id="0" onclick="remove(this)">@Labels.Remove</button>
+            </td>
+        </tr>
+</table>

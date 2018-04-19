@@ -1,0 +1,67 @@
+﻿@using BookStore.WebAPI.Resources
+@model BookStore.WebAPI.Areas.Books.Models.BookVm
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<fieldset>
+    <legend>@Labels.NewBook</legend>
+    @using (Ajax.BeginForm(new AjaxOptions { }))
+    {
+        @Html.HiddenFor(x => x.Id)
+        <div class="row text-center">
+            <div class="col-sm-4">
+                @Html.LabelFor(x => x.Title, new { @style = "width:100%;" })
+                @Html.TextBoxFor(x => x.Title, new { @style = "width:100%;" })
+            </div>
+
+            <div class="col-sm-4">
+                @Html.LabelFor(x => x.Description, new { @style = "width:100%;" })
+                @Html.TextBoxFor(x => x.Description, new { @style = "width:100%;" })
+            </div>
+
+            <div class="col-sm-4">
+                @Html.LabelFor(x => x.Price, new { @style = "width:100%;" })
+                @Html.TextBoxFor(x => x.Price, new { @style = "width:100%;" })
+            </div>
+
+            <div class="col-sm-4">
+                @Html.LabelFor(x => x.Quantity, new { @style = "width:100%;" })
+                @Html.TextBoxFor(x => x.Quantity, new { @style = "width:100%;" })
+            </div>
+
+            <div class="col-sm-4">
+                @Html.LabelFor(x => x.PublisherId, new { @style = "width:100%;" })
+                @Html.DropDownListFor(x => x.PublisherId, Model.Publishers, new { @style = "width:100%;" })
+            </div>
+
+            <div class="col-sm-4">
+                @Html.LabelFor(x => x.AuthorsIds, new { @style = "width:100%;" })
+                @Html.DropDownListFor(x => x.AuthorsIds, Model.Authors, new { @style = "width:100%;", @multiple = "multiple" })
+            </div>
+        </div>
+        <br />
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <button id="btnSave" type="button" class="btn btn-success">
+                    <i class="glyphicon glyphicon-save left"></i>
+                    @Labels.Save
+                </button>
+            </div>
+        </div>
+    }
+</fieldset>
+@*<a href="~/Areas/Books/Views/Book/List.cshtml">~/Areas/Books/Views/Book/List.cshtml</a>*@
+<div id="list">
+    @Html.Partial("~/Areas/Books/Views/Book/List.cshtml")
+</div>
+
+@section scripts {
+    @Scripts.Render(BundleConfig.BookBundle)
+    <script type="text/javascript">
+        var msgSuccess = "@Html.Raw(Messages.Saved)";
+        var msgDelete = "@Html.Raw(Messages.DeleteQuestion)";
+    </script>
+}
